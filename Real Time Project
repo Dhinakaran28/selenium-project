@@ -1,0 +1,201 @@
+package org.greens;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.bouncycastle.oer.its.VerificationKeyIndicator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class RealTime {
+	public static void main(String[] args) throws InterruptedException, AWTException {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://omrbranch.com/");
+		driver.manage().window().maximize();
+		//login email
+		WebElement email = driver.findElement(By.id("email"));
+		email.sendKeys("g.dhinakaran28@gmail.com");
+		
+		//login pass /login button
+
+		WebElement pass = driver.findElement(By.id("pass"));
+		pass.sendKeys("Dhinu@28",Keys.ENTER);
+		
+		Thread.sleep(3000);
+	
+		//print the username
+		WebElement element = driver.findElement(By.xpath("//a[@data-testid='username']"));
+		String text = element.getText();
+		System.out.println(text);
+		
+		//search the nuts product
+		WebElement btnSearch = driver.findElement(By.xpath("//input[@id='search']"));
+		btnSearch.sendKeys("nuts",Keys.ENTER);
+		
+		//print the search result - nuts
+		WebElement element2 = driver.findElement(By.xpath("//h5[@class='sectionTitle font35 font-weight-bold color11']"));
+		String text2 = element2.getText();
+		System.out.println(text2);
+		
+		// add to kart
+		WebElement element3 = driver.findElement(By.xpath("//a[@class='hover1 font16 fontsemibold colorWhite bgTheme px-4 py-1 radius50 dyna_btn addBtn-18']"));
+		element3.click();
+		
+		Thread.sleep(3000);
+	//select the varient
+		WebElement btnLogin = driver.findElement(By.id("cart-24"));
+		btnLogin.click();
+		
+	Thread.sleep(3000);	
+	
+	//goto kart
+		WebElement addToKard = driver.findElement(By.xpath("//a[@class='hover1']"));
+		addToKard.click();
+		
+		Thread.sleep(2000);
+		
+		//print my kart
+		WebElement element4 = driver.findElement(By.xpath("//h5[@class='font35 font-weight-bold color11 text-center pageTitle']"));
+		String text3 = element4.getText();
+		System.out.println(text3);
+		
+		//click delivary address
+		WebElement element5 = driver.findElement(By.xpath("//div[@class='diffAddres addAddress d-flex justify-content-center align-items-center mb-md-0 mb-2']"));
+		element5.click();
+		
+		Thread.sleep(1000);
+		
+		//select the address
+		WebElement addressType = driver.findElement(By.id("address_type"));
+		addressType.click();
+		
+		Thread.sleep(1000);
+		
+		//enter the work
+		Select select = new Select(addressType);
+		select.selectByIndex(1);
+		
+		//first name
+		WebElement firstName = driver.findElement(By.xpath("//input[@placeholder='First name*']"));
+		firstName.sendKeys("DHINAKARAN");
+		
+		//last name
+		WebElement lastName = driver.findElement(By.xpath("//input[@placeholder='Last name*']"));
+		lastName.sendKeys("G");
+		
+		//contact no
+		WebElement cntNo = driver.findElement(By.xpath("//input[@placeholder='Contact No*']"));
+		cntNo.sendKeys("8124348584");
+		
+		//house no
+		WebElement houseNo = driver.findElement(By.xpath("//input[@placeholder='House No*']"));
+		houseNo.sendKeys("2/266");
+		
+		//address
+		WebElement address = driver.findElement(By.xpath("//input[@placeholder='Address*']"));
+		address.sendKeys("APR NAGER,1st STREET CHETTIPLAYAM,TIRUPPUR");
+		
+		//india contry
+		
+	
+		Thread.sleep(2000);
+		
+		 WebElement india = driver.findElement(By.xpath("//select[@class='form-control height50 country']"));
+		 
+			Select select1 = new Select(india);
+			select1.selectByIndex(1);
+			
+		 Thread.sleep(2000);
+		 
+		//state
+		WebElement state = driver.findElement(By.xpath("//select[@class='form-control height50 state']"));
+			
+		Select select2 = new Select(state);
+		select2.selectByIndex(35);
+		
+		Thread.sleep(2000);
+		
+		//city
+		WebElement city = driver.findElement(By.xpath("//select[@class='form-control height50 city']"));
+		
+		Select select3 = new Select(city);
+		select3.selectByIndex(778);
+		
+		Thread.sleep(1000);
+		
+//		//pincode
+		WebElement pinCode = driver.findElement(By.xpath("//input[@placeholder='Zip Code*']"));
+		pinCode.sendKeys("641602");
+		
+		//login
+		WebElement btnSave = driver.findElement(By.xpath("//button[@class='saveAddress font18 fontSemiBold colorWhite bgTheme radius50 borderNone px-5 py-2 hover1']"));
+		btnSave.click();
+		
+		Thread.sleep(2000);
+
+		//payment method
+		WebElement slectCard = driver.findElement(By.id("payment_type"));
+		slectCard.click();
+		
+		Select select4 = new Select(slectCard);
+		select4.selectByIndex(1);
+		
+		
+		// btn login visa
+		WebElement rdoButtn = driver.findElement(By.xpath("//label[@for=\'visa_card\']"));
+		rdoButtn.click();
+		
+//		Select select5 = new Select(rdoButtn);
+//		select5.selectByIndex(2);
+//		
+		
+		
+		//card number
+		WebElement cardNum = driver.findElement(By.xpath("//input[@class='form-control mt-2']"));
+		cardNum.sendKeys("5555555555552222");
+		
+		
+		//month
+		WebElement month = driver.findElement(By.id("month"));
+		month.click();
+		
+		Select select6 = new Select(month);
+		select6.selectByIndex(10);
+		
+
+		//year
+		WebElement year = driver.findElement(By.id("year"));
+		
+		Select select7 = new Select(year);
+		select7.selectByIndex(1);
+		
+     Thread.sleep(2000);
+		
+		//cvv
+		WebElement cvv = driver.findElement(By.xpath("//input[@placeholder='CVV']"));
+		cvv.sendKeys("280");
+		
+		//place order
+	WebElement placeOrder = driver.findElement(By.id("placeOrder"));
+		placeOrder.click();
+		
+		Thread.sleep(8000);
+		
+		//order no get
+				WebElement orderNo = driver.findElement(By.xpath("//span[@class=\"font16 fontNormal color36\"][1]"));
+				String text4 = orderNo.getText();
+				System.out.println("ORDER NO:"+text4);
+		
+		
+		
+		
+		
+		
+	}
+
+}
